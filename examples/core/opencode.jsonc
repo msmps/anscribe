@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "anscribe": {
+      "type": "local",
+      "command": ["bun", "run", "../../packages/mcp/bin/anscribe-mcp.ts"],
+      "enabled": true,
+      "timeout": 10000,
+    },
+  },
+}

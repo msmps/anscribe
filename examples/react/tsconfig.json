@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    // Environment setup & latest features
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@opentui/react",
+    "allowJs": true,
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    // Resolve every @anscribe/* entry to workspace source so Bun never falls
+    // back to a stale dist/ when packages haven't been rebuilt across branch
+    // switches. Without this, package.json `exports` would point Bun at
+    // dist/ for the entries we don't list here.
+    "paths": {
+      "@anscribe/core": ["../../packages/core/src/index.ts"],
+      "@anscribe/mcp/sink": ["../../packages/mcp/src/sink.ts"],
+      "@anscribe/opentui": ["../../packages/opentui/src/index.ts"],
+      "@anscribe/opentui/react": ["../../packages/opentui/src/react/index.ts"],
+      "@anscribe/opentui/react/preload": ["../../packages/opentui/src/react/preload.ts"],
+      "@anscribe/react": ["../../packages/react/src/index.ts"],
+      "@anscribe/react/preload": ["../../packages/react/src/preload.ts"]
+    },
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
+}

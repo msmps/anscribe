@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "anscribe-docs",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-05-12",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/llms.txt"]
+  },
+  "routes": [
+    {
+      "pattern": "anscribe.dev",
+      "custom_domain": true
+    }
+  ]
+}

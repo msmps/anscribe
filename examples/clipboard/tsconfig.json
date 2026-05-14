@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "allowJs": true,
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "preserveSymlinks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@opentui/core": ["../../node_modules/@opentui/core"],
+      "@opentui/core/*": ["../../node_modules/@opentui/core/*"],
+      "@anscribe/core": ["../../packages/core/src/index.ts"],
+      "@anscribe/opentui": ["../../packages/opentui/src/index.ts"]
+    },
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
+}

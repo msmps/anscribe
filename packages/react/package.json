@@ -1,0 +1,61 @@
+{
+  "name": "@anscribe/react",
+  "version": "0.1.0",
+  "description": "Anscribe React adapter: drop-in <Anscribe /> component and hooks for capture mode in React TUIs.",
+  "keywords": [
+    "agent",
+    "anscribe",
+    "capture",
+    "mcp",
+    "opentui",
+    "react",
+    "tui"
+  ],
+  "homepage": "https://github.com/msmps/anscribe",
+  "bugs": {
+    "url": "https://github.com/msmps/anscribe/issues"
+  },
+  "license": "MIT",
+  "author": "msmps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msmps/anscribe.git",
+    "directory": "packages/react"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./preload": {
+      "types": "./dist/preload.d.mts",
+      "import": "./dist/preload.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "effect": "^4.0.0-beta.65"
+  },
+  "peerDependencies": {
+    "@anscribe/core": "workspace:*",
+    "react": ">=19.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}

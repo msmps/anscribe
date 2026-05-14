@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "msmps/anscribe" }],
+  "commit": false,
+  "fixed": [["@anscribe/core", "@anscribe/mcp", "@anscribe/opentui", "@anscribe/react"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["example-core", "example-clipboard", "example-react", "@anscribe/docs"]
+}

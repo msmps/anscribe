@@ -1,0 +1,72 @@
+{
+  "name": "@anscribe/opentui",
+  "version": "0.1.0",
+  "description": "Anscribe OpenTUI adapter: install capture mode in OpenTUI apps and stream captures to an agent via MCP.",
+  "keywords": [
+    "agent",
+    "anscribe",
+    "capture",
+    "mcp",
+    "opentui",
+    "tui"
+  ],
+  "homepage": "https://github.com/msmps/anscribe",
+  "bugs": {
+    "url": "https://github.com/msmps/anscribe/issues"
+  },
+  "license": "MIT",
+  "author": "msmps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msmps/anscribe.git",
+    "directory": "packages/opentui"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.mts",
+      "import": "./dist/react.mjs"
+    },
+    "./react/preload": {
+      "types": "./dist/react/preload.d.mts",
+      "import": "./dist/react/preload.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run",
+    "test:integration": "bun test test/integration"
+  },
+  "dependencies": {
+    "effect": "^4.0.0-beta.65",
+    "nanoid": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@anscribe/core": "workspace:*",
+    "@anscribe/react": "workspace:*",
+    "@opentui/core": "^0.2.8",
+    "@opentui/react": "0.2.8",
+    "react": ">=19.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@opentui/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+name: Setup (pnpm)
+description: Install pnpm + Node and install dependencies for the publish path.
+runs:
+  using: composite
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+    - name: Install node
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        registry-url: https://registry.npmjs.org
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install

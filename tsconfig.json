@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Effect-TS/tsgo/refs/heads/main/schema.json",
+  "extends": "./tsconfig.base.json",
+  // paths now live in tsconfig.base.json so every package that extends base
+  // (notably packages/opentui) inherits the same source-resolution map. See
+  // the comment there for the failure mode this guards against.
+  "compilerOptions": {},
+  "include": [
+    "packages/core/src/**/*",
+    "packages/core/bin/**/*",
+    "packages/core/test/**/*",
+    "packages/react/src/**/*",
+    "packages/react/test/**/*",
+    "packages/opentui/src/**/*",
+    "packages/opentui/test/**/*"
+  ],
+  "exclude": [".repos", "**/dist", "examples", "node_modules", "**/test/integration"]
+}

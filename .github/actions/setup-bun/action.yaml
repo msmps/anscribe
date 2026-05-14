@@ -1,0 +1,12 @@
+name: Setup (bun)
+description: Install Bun and install dependencies for the dev path.
+runs:
+  using: composite
+  steps:
+    - name: Install bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+    - name: Install dependencies
+      shell: bash
+      run: bun install --frozen-lockfile

@@ -1,0 +1,50 @@
+{
+  "name": "@anscribe/core",
+  "version": "0.1.0",
+  "description": "Anscribe core: OpenTUI-agnostic capture model, project discovery, and clipboard formatting.",
+  "keywords": [
+    "agent",
+    "anscribe",
+    "capture",
+    "opentui",
+    "tui"
+  ],
+  "homepage": "https://github.com/msmps/anscribe",
+  "bugs": {
+    "url": "https://github.com/msmps/anscribe/issues"
+  },
+  "license": "MIT",
+  "author": "msmps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msmps/anscribe.git",
+    "directory": "packages/core"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "effect": "^4.0.0-beta.65",
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
+    "@effect/platform-node": "^4.0.0-beta.65"
+  }
+}
