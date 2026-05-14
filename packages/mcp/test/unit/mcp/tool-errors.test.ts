@@ -36,6 +36,21 @@ const setupMcpClient = Effect.gen(function* () {
 const callTool = (client: Client, name: string, args: Record<string, unknown>) =>
   Effect.tryPromise(() => client.callTool({ name, arguments: args }));
 
+const FailingStoreWithCauseLayer = Layer.succeed(
+  CaptureStore,
+  CaptureStore.of({
+    createCapture: () => Effect.die("unused"),
+    listPendingCaptures: () =>
+      Effect.fail(
+        new CaptureStoreError({
+          message: "Unable to access Anscribe Capture Store",
+          cause: new Error("CLIENT_CLOSED: The client is closed"),
+        }),
+      ),
+    updateCaptureStatus: () => Effect.die("unused"),
+  }),
+);
+
 describe("anscribe MCP tools — store failure handling", () => {
   layer(FailingStoreLayer)("list_pending_captures surfaces store errors", (it) => {
     it.effect("runs", () =>
@@ -48,6 +63,23 @@ describe("anscribe MCP tools — store failure handling", () => {
       }),
     );
   });
+
+  layer(FailingStoreWithCauseLayer)(
+    "list_pending_captures appends the underlying cause to the error text",
+    (it) => {
+      it.effect("runs", () =>
+        Effect.gen(function* () {
+          const client = yield* setupMcpClient;
+          const response = yield* callTool(client, "list_pending_captures", {});
+
+          expect(response.isError).toBe(true);
+          const [content] = response.content as ReadonlyArray<{ type: string; text: string }>;
+          expect(content?.text).toContain("Unable to access Anscribe Capture Store");
+          expect(content?.text).toContain("Cause: CLIENT_CLOSED: The client is closed");
+        }),
+      );
+    },
+  );
 
   layer(FailingStoreLayer)("resolve_capture surfaces store errors", (it) => {
     it.effect("runs", () =>

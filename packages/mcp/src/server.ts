@@ -127,9 +127,25 @@ const toSuccessToolResult = (result: unknown): CallToolResult => {
   };
 };
 
+// Surface `error.cause` so SQL/filesystem failures don't get summarised to a
+// generic "Unable to access Anscribe Capture Store" with no information for
+// the agent (or the operator reading MCP logs) to act on. The Capture Store
+// only reaches this branch with errors from libsql, the filesystem, or schema
+// decoding, none of which carry secrets worth hiding from the caller.
+const renderErrorCause = (cause: unknown): string => {
+  if (cause === undefined) return "";
+
+  if (cause instanceof Error) {
+    const inner = (cause as { cause?: unknown }).cause;
+    return `\n\nCause: ${cause.message}${inner !== undefined ? renderErrorCause(inner) : ""}`;
+  }
+
+  return `\n\nCause: ${String(cause)}`;
+};
+
 const toErrorToolResult = (error: CaptureStoreErrorChannel): CallToolResult => ({
   isError: true,
-  content: [{ type: "text", text: error.message }],
+  content: [{ type: "text", text: error.message + renderErrorCause(error.cause) }],
 });
 
 export const runAnscribeMcpServer = (options: AnscribeMcpServerOptions = {}) =>

@@ -55,9 +55,17 @@ const program = Effect.gen(function* () {
     process.stderr.write(`anscribe-mcp: store        = ${storePath}\n`);
   });
 
-  yield* runAnscribeMcpServer().pipe(Effect.provide(CaptureStore.layer({ projectRoot })));
-
-  return yield* Effect.never;
+  // Effect.never must live INSIDE the CaptureStore.layer scope: the layer
+  // wraps a scoped LibsqlClient, and as soon as the providing scope ends the
+  // libsql client is closed. `runAnscribeMcpServer` itself resolves the moment
+  // `server.connect` succeeds (its acquireRelease sets up a finalizer but
+  // doesn't block), so if we sequenced Effect.never AFTER `pipe(provide(...))`
+  // the SqlClient would close before the first MCP tool call arrived and
+  // every handler would surface "Unable to access Anscribe Capture Store".
+  yield* Effect.gen(function* () {
+    yield* runAnscribeMcpServer();
+    yield* Effect.never;
+  }).pipe(Effect.provide(CaptureStore.layer({ projectRoot })));
 });
 
 const runtime = ManagedRuntime.make(NodeServices.layer);
