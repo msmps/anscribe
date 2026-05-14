@@ -1,5 +1,12 @@
 # @anscribe/react
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @anscribe/core@1.0.1
+
 ## 1.0.0
 
 ### Minor Changes

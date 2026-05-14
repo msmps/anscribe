@@ -1,6 +1,6 @@
 {
   "name": "@anscribe/opentui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Anscribe OpenTUI adapter: install capture mode in OpenTUI apps and stream captures to an agent via MCP.",
   "keywords": [
     "agent",

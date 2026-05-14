@@ -1,5 +1,14 @@
 # @anscribe/mcp
 
+## 1.0.1
+
+### Patch Changes
+
+- [`ebc6dcd`](https://github.com/msmps/anscribe/commit/ebc6dcd7e67a293b3199e49efbbc47687a270714) Thanks [@msmps](https://github.com/msmps)! - Fix `anscribe-mcp` bin closing the libsql client before the first MCP tool call could use it.
+
+- Updated dependencies []:
+  - @anscribe/core@1.0.1
+
 ## 1.0.0
 
 ### Minor Changes

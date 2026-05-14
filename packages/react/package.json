@@ -1,6 +1,6 @@
 {
   "name": "@anscribe/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Anscribe React adapter: drop-in <Anscribe /> component and hooks for capture mode in React TUIs.",
   "keywords": [
     "agent",
