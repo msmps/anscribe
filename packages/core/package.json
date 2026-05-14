@@ -1,6 +1,6 @@
 {
   "name": "@anscribe/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Anscribe core: OpenTUI-agnostic capture model, project discovery, and clipboard formatting.",
   "keywords": [
     "agent",
